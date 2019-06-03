@@ -8,10 +8,14 @@ import './App.css';
 class App extends Component {
   state = {
     counters: [
-      { id: 1, value: 5 },
-      { id: 2, value: 0 },
-      { id: 3, value: 0 },
-      { id: 4, value: 0 }
+      { id: 1, value: 5, url: "https://s3.amazonaws.com/libapps/accounts/40322/images/larry200.jpg" },
+      { id: 2, value: 5, url: "https://s3.amazonaws.com/libapps/accounts/40322/images/larry200.jpg" },
+      { id: 3, value: 1, url: "https://s3.amazonaws.com/libapps/accounts/40322/images/larry200.jpg"},
+      { id: 4, value: 0, url: "https://s3.amazonaws.com/libapps/accounts/40322/images/larry200.jpg" },
+      { id: 5, value: 5, url: "https://s3.amazonaws.com/libapps/accounts/40322/images/larry200.jpg" },
+      { id: 6, value: 3, url: "https://s3.amazonaws.com/libapps/accounts/40322/images/larry200.jpg" },
+      { id: 7, value: 4, url: "https://s3.amazonaws.com/libapps/accounts/40322/images/larry200.jpg" },
+      { id: 8, value: 1, url: "https://s3.amazonaws.com/libapps/accounts/40322/images/larry200.jpg" }
     ]
   };
 
@@ -21,6 +25,14 @@ class App extends Component {
     const counters = [...this.state.counters];
     const index = counters.indexOf(counter);
     counters[index].value++;
+    this.setState({ counters });
+
+  };
+
+  handleDecrement = counter => {
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+    counters[index].value--;
     this.setState({ counters });
 
   };
@@ -44,12 +56,13 @@ class App extends Component {
     <NavBar
       totalCounters={this.state.counters.filter(c => c.value >0).length}
      />
-    <main className="container">
+    <main className="container text-center">
     <Counters
     counters={this.state.counters}
       onReset={this.handleReset}
       onIncrement={this.handleIncrement}
       onDelete={this.handleDelete}
+      onDecrement={this.handleDecrement}
      />
     </main>
     </React.Fragment>
